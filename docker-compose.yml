@@ -1,0 +1,27 @@
+version: '3.5'
+
+services:
+  issue_api_front:
+    container_name: 'issue_api_front'
+    image: issue_api_front/dev
+    user: $DOCKER_UID:$DOCKER_GID
+    build:
+      dockerfile: ./docker/development/Dockerfile
+      context: .
+      args:
+        UID: $DOCKER_UID
+        GID: $DOCKER_GID
+        UNAME: $USER
+    tty: true
+    stdin_open: true
+    ports:
+      - '3000:3000'
+    working_dir: '/home/$USER/workspace'
+    volumes:
+      - .:/home/$USER/workspace:cached
+    # entrypoint: /bin/sh
+    entrypoint: |
+      sh -e -c "
+      npm install
+      npm run dev
+      "
