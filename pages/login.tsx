@@ -23,7 +23,7 @@ const Page: React.FC = () => {
 
   return (
     <Paper className={classes.paper}>
-      <Grid container spacing={2} justify="center" alignItems="center" direction="column" style={{ minHeight: '60vh'}}>
+      <Grid container spacing={2} justify="center" alignItems="center" direction="column" style={{ minHeight: '60vh' }}>
         <Typography variant="h4" gutterBottom>
           Login
         </Typography>
