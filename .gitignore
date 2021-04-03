@@ -25,6 +25,10 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
+.env
+/env_files/*
+!/env_files/.keep
+
 .env.local
 .env.development.local
 .env.test.local
