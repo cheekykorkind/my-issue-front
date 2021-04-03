@@ -12,17 +12,13 @@ module.exports = {
       jsx: true,
     },
   },
-  plugins: ["@typescript-eslint", "react", "prettier"],
+  plugins: ["prettier"],
   extends: [
-    "airbnb",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:react/recommended",
+    "eslint-config-airbnb",
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:import/typescript",
     "prettier",
-    "prettier/@typescript-eslint",
-    "prettier/react",
   ],
   rules: {
     "@typescript-eslint/explicit-module-boundary-types": "off",
@@ -34,6 +30,7 @@ module.exports = {
       "error",
       {
         printWidth: 100,
+        endOfLine: "auto",
       },
     ],
     "import/no-unresolved": [2, { ignore: ["^~"] }],
