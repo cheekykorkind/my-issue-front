@@ -1,1 +1,8 @@
-{}
+{
+  "chromeWebSecurity": false,
+  "video": false,
+  "screenshotOnRunFailure": false,
+  "testFiles": [
+    "login/*.js"
+  ]
+}
