@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 // eslint-disable-next-line no-use-before-define
 import React, { FC } from "react";
 import { TextField } from "@material-ui/core";
@@ -52,34 +53,59 @@ const Page: React.FC = () => {
     }
   };
 
+  //   "user": {
+  //     "email": "me@gmail.com",
+  //     "password": "password",
+  //     "password_confirmation": "password"
+  // }
+
   const { handleSubmit, control } = useForm({
     defaultValues: {
-      FirstName: "",
+      email: "",
+      password: "",
+      password_confirmation: "",
     },
     mode: "onChange",
   });
 
   const onSubmit = async (data) => {
     console.log(data);
+    const devise_body = {
+      user: {
+        email: data.email,
+        password: data.password,
+        password_confirmation: data.password_confirmation,
+      },
+    };
+    // const devise_body = {
+    //   email: data.email,
+    //   password: data.password,
+    //   password_confirmation: data.password_confirmation,
+    // };
+
     const { res, error } = await callRailsApi({
       path: `users/sign_up`,
-      data: {
-        user_id: data.user_id,
-        password: data.password,
-      },
+      data: devise_body,
     });
-    // console.log(res);
+    console.log(res);
+    console.log(error);
 
-    if (error === null) {
-      console.log(1);
-    } else {
-      console.log(2);
-    }
+    // if (error === null) {
+    //   console.log(1);
+    // } else {
+    //   console.log(2);
+    // }
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Input control={control} name="FirstName" rules={{ required: true }} />
+      {/* <input autofocus="autofocus" autocomplete="email" type="email" value="" name="user[email]" id="user_email"></input> */}
+      {/* <input autocomplete="new-password" type="password" name="user[password]" id="user_password"> */}
+      {/* <input autocomplete="new-password" type="password" name="user[password_confirmation]" id="user_password_confirmation"> */}
+      <Input control={control} name="email" rules={{ required: true }} />
+      <Input control={control} name="password" rules={{ required: true }} />
+      <Input control={control} name="password_confirmation" rules={{ required: true }} />
+
       <input type="submit" />
     </form>
   );
